@@ -6,5 +6,5 @@ app.get('/', (_request, response) => {
 });
 
 app.listen(process.env.PORT, () => {
-  console.log(`Escutando na porta ${process.env.PORT}`);
+  console.log(`Servidor rodando na porta: ${process.env.PORT}`);
 });
