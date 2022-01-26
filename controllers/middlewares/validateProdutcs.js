@@ -1,5 +1,6 @@
 const Joi = require('joi');
 // Baseado na aula da (14C | 23.3), no PR do Kaique e na documentação do Joi(https://joi.dev/api/?v=17.5.0#assertvalue-schema-message-options)
+// As mensagens são diferentes da biblioteca, por isto, em casos especificos é necessário alterar a mensagem.
 module.exports = Joi.object({
   name: Joi.string().min(5).required().messages({
     'string.min': '"name" length must be at least 5 characters long',

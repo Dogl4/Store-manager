@@ -1,7 +1,7 @@
 require('dotenv').config();
 const app = require('express')();
 
-const productsController = require('./controllers/productsController');
+const controllers = require('./controllers');
 const joiError = require('./controllers/middlewares/joi.error');
 
 app.use(require('body-parser').json());
@@ -11,7 +11,8 @@ app.get('/', (_request, response) => {
   response.send();
 });
 
-app.use('/products', productsController);
+app.use('/products', controllers.products);
+app.use('/sales', controllers.sales);
 
 app.use(joiError);
 
