@@ -12,9 +12,9 @@ const statusByErrorCode = {
 module.exports = (error, _req, res, _next) => {
   if (error.isJoi) {
     const status = statusByErrorCode[error.details[0].type];
-    return res.status(status).json({ message: error.message });
+    return res.status(status).json({ message: error.details[0].message });
   }
 
   const status = statusByErrorCode[error.code] || 500;
-  return res.status(status).json({ message: error.message });
+  return res.status(status).json({ message: error.details[0].message });
 };

@@ -33,8 +33,10 @@ router.put('/:id', rescue(async (req, res) => {
   const { error } = validateProdutcs.validate(req.body);
   if (error) throw error;
 
-  const product = await productsService.getByName(req.body.name);
-  if (!product) return res.status(404).json({ message: 'Product not found' });
+  const product = await productsService.getById({ id: +req.params.id });
+  if (!product) {
+    return res.status(404).json({ message: 'Product not found' });
+  }
 
   const { body: { name, quantity }, params: { id } } = req;
   const newProduct = await productsService.update({ id: +id, name, quantity });

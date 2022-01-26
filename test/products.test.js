@@ -382,6 +382,7 @@ describe("Products", () => {
         .expect("status", 200)
         .then((response) => {
           const { body } = response;
+          console.log('XABLAUBODY', body);
           result = JSON.parse(body);
           resultProductId = result[0].id;
         });
@@ -394,6 +395,7 @@ describe("Products", () => {
         .expect("status", 200)
         .then((secondResponse) => {
           const { json } = secondResponse;
+          console.log('XABLAUjson', json);
           const productName = json.name;
           const quantityProduct = json.quantity;
           expect(productName).toEqual("Machado de Thor");
