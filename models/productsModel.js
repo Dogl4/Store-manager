@@ -6,7 +6,7 @@ const getAll = async () => {
 };
 
 const getByName = async (name) => {
-  const [rows] = await connection.execute('SELECT * FROM products WHERE name = ?', [name]);
+  const [[rows]] = await connection.execute('SELECT * FROM products WHERE name = ?', [name]);
   return rows;
 };
 
@@ -27,10 +27,16 @@ const update = async ({ id, name, quantity }) => {
   await connection.execute(query, [name, quantity, id]);
 };
 
+const deleteById = async (id) => {
+  const query = 'DELETE FROM products WHERE id = ?';
+  await connection.execute(query, [id]);
+};
+
 module.exports = {
   getAll,
   getByName,
   create,
   getById,
   update,
+  deleteById,
 };

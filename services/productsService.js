@@ -13,10 +13,17 @@ const update = async ({ id, name, quantity }) => {
   return { id, name, quantity };
 };
 
+const deleteById = async ({ id }) => {
+  const product = await productsModel.getById(id);
+  await productsModel.deleteById(id);
+  return product;
+};
+
 module.exports = {
   getAll,
   create,
   getByName,
   getById,
   update,
+  deleteById,
  };
