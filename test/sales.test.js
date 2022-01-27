@@ -331,7 +331,7 @@ describe('Sales', () => {
           resultSecondSale = JSON.parse(body);
           resultSecondSaleId = resultSecondSale.id;
         });
-
+        
       await frisby
         .get(`${url}/sales/`)
         .expect('status', 200)
@@ -339,10 +339,10 @@ describe('Sales', () => {
           const { body } = responseAll;
           const resultAllSales = JSON.parse(body);
           hasSaleField(resultAllSales, ["saleId", "date", "product_id", "quantity"]);
-
+          
           const firstSale = resultAllSales[0];
           const secondSale = resultAllSales[2];
-
+          
           expect(resultAllSales.length).toBe(4);
           expect(firstSale.saleId).toBe(resultFirstSaleId);
           expect(resultAllSales[0]).not.toHaveProperty("id");
@@ -391,7 +391,7 @@ describe('Sales', () => {
           const { body } = responseOne;
           const responseAll = JSON.parse(body);
           hasSaleField(responseAll, ["date", "product_id", "quantity"]);
-
+          
           const productIdFirstProduct = responseAll[0].product_id;
           const productIdSecondProduct = responseAll[1].product_id;
           expect(responseAll.length).toBe(2);
