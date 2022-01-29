@@ -35,7 +35,8 @@ router
     const { id } = req.params;
     for (let index = 0; index < req.body.length; index += 1) {
       const proId = 'product_id';
-      const newReqBody = { [proId]: req.body[index].product_id, quantity: req.body[index].quantity };
+      const newReqBody = { [proId]: req.body[index].product_id, 
+        quantity: req.body[index].quantity };
       const { error } = validateSales.put.validate(newReqBody);
       if (error) throw error;
     }
