@@ -2,7 +2,7 @@ require('dotenv').config();
 const app = require('express')();
 
 const controllers = require('./controllers');
-const joiError = require('./controllers/middlewares/joi.error');
+const joiError = require('./middlewares/joi.error');
 
 app.use(require('body-parser').json());
 

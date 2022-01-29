@@ -2,7 +2,7 @@ const router = require('express').Router();
 const rescue = require('express-rescue');
 
 const productsService = require('../services/productsService');
-const validateProdutcs = require('./middlewares/validateProdutcs');
+const validateProdutcs = require('../middlewares/validateProdutcs');
 
 router
   .post('/', rescue(async (req, res) => {
