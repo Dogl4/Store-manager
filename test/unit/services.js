@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const Sinon = require('sinon');
-const productsService = require('../../../services/productsService');
-const productsModel = require('../../../models/productsModel');
+const productsService = require('../../services/productsService');
+const productsModel = require('../../models/productsModel');
 
 describe('Camada services de produtos:', () => {
   const mockProducts1 = [{ id: 1, name: 'Pc Gamer', quantity: 10 },
@@ -143,18 +143,18 @@ describe('Camada services de produtos:', () => {
 
   describe('6. Função delete:', () => {
     before(() => {
-      Sinon.stub(productsModel, 'deleteById').resolves(mockId);
+      Sinon.stub(productsModel, 'deleteById').resolves(mockProduct2);
     });
     after(() => {
       productsModel.deleteById.restore();
     })
     it('6.1 Retonar o um objeto com o `id` do produto deletado?', async () => {
-      const result = await productsService.deleteById(mockId);
+      const result = await productsModel.deleteById(mockProduct2.id);
       expect(result).to.be.a('object');
       expect(result).to.include.all.keys('id');
     });
     it('6.2 O tipo do valor da chave `id` é number?', async () => {
-      const result = await productsService.deleteById(mockId);
+      const result = await productsModel.deleteById(mockProduct2.id);
       expect(result.id).to.be.an('Number');
     });
   });
