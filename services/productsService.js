@@ -9,14 +9,14 @@ const getByName = (name) => productsModel.getByName(name);
 const getById = ({ id }) => productsModel.getById(id);
 
 const update = async ({ id, name, quantity }) => {
-  await productsModel.update({ id, name, quantity });
-  return { id, name, quantity };
+  const newProduct = await productsModel.update({ id, name, quantity });
+  return newProduct;
 };
 
 const deleteById = async ({ id }) => {
-  const product = await productsModel.getById(id);
-  await productsModel.deleteById(id);
-  return product;
+  await productsModel.getById(id);
+  const idDeleted = await productsModel.deleteById(id);
+  return idDeleted;
 };
 
 module.exports = {

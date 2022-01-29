@@ -12,8 +12,8 @@ const getByName = async (name) => {
 
 const create = async ({ name, quantity }) => {
   const query = 'INSERT INTO products (name, quantity) VALUES (?, ?);';
-  const [rows] = await connection.execute(query, [name, quantity]);
-  return { id: rows.insertId, name, quantity };
+  const [{ insertId: id }] = await connection.execute(query, [name, quantity]);
+  return { id, name, quantity };
 };
 
 const getById = async (id) => {
@@ -25,11 +25,13 @@ const getById = async (id) => {
 const update = async ({ id, name, quantity }) => {
   const query = 'UPDATE products SET name = ?, quantity = ? WHERE id = ?;';
   await connection.execute(query, [name, quantity, id]);
+  return { id, name, quantity };
 };
 
 const deleteById = async (id) => {
   const query = 'DELETE FROM products WHERE id = ?;';
   await connection.execute(query, [id]);
+  return { id };
 };
 
 module.exports = {

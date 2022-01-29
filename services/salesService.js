@@ -15,7 +15,6 @@ const updateQuantity = async ({ id, newSales }) => {
   const isSale = await salesModel.getByIdSale(id);
   if (!isSale.length) return;
 
-  await salesModel.updateDate(id);
   await salesModel.updateQuantity(...arr);
   return { saleId: id, itemUpdated: [...newSales] };
 };
