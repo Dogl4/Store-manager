@@ -2,6 +2,8 @@ const { expect } = require('chai');
 const Sinon = require('sinon');
 const productsService = require('../../services/productsService');
 const productsModel = require('../../models/productsModel');
+const salesModel = require('../../models/salesModel');
+const salesService = require('../../services/salesService');
 
 describe('Camada services de produtos:', () => {
   const mockProducts1 = [{ id: 1, name: 'Pc Gamer', quantity: 10 },
@@ -44,7 +46,7 @@ describe('Camada services de produtos:', () => {
     })
     it('2.1 Retorna um objecto com as chaves: `id`, `name` e `quantity` ?', async () => {
       const result = await productsService.create(mockProduct3);
-      expect(result).to.include.all.keys('id', 'name', 'quantity'); 
+      expect(result).to.include.all.keys('id', 'name', 'quantity');
     });
     it('2.2 Os dados recebido é um objeto com as chaves: `name` e `quantity`, com valores do tipo string e number?', async () => {
       const result = await productsService.create(mockProduct3);
@@ -143,19 +145,144 @@ describe('Camada services de produtos:', () => {
 
   describe('6. Função delete:', () => {
     before(() => {
-      Sinon.stub(productsModel, 'deleteById').resolves(mockProduct2);
+      Sinon.stub(productsModel, 'getById').resolves(mockProduct2);
+      Sinon.stub(productsModel, 'deleteById').resolves(mockId.id);
     });
     after(() => {
+      productsModel.getById.restore();
       productsModel.deleteById.restore();
     })
-    it('6.1 Retonar o um objeto com o `id` do produto deletado?', async () => {
-      const result = await productsModel.deleteById(mockProduct2.id);
+    it('6.1 Retonar o um objeto com as chaves: id, name e quantity?', async () => {
+      const result = await productsService.getById(mockProduct2.id);
+      await productsService.deleteById(mockProduct2.id);
       expect(result).to.be.a('object');
-      expect(result).to.include.all.keys('id');
+      expect(result).to.include.all.keys('id', 'name', 'quantity');
     });
-    it('6.2 O tipo do valor da chave `id` é number?', async () => {
-      const result = await productsModel.deleteById(mockProduct2.id);
+    it('6.2 Os valores das chaves: id é um number, a name é um string e a quantity é um number?', async () => {
+      const result = await productsService.getById(mockProduct2.id);
+      productsService.deleteById(mockProduct2.id);
       expect(result.id).to.be.an('Number');
+      expect(result.name).to.be.an('String');
+      expect(result.quantity).to.be.an('Number');
+    });
+  });
+});
+
+describe('Camada services de sales:', () => {
+  const mockSale = [{ saleId: 1, date: '2019-01-01 02:54:54', product_id: 1, quantity: 1 }];
+  const mockSale2 = [{ product_id: 1, quantity: 1, date: '2019-01-01 02:54:54', }];
+  mockId = { id: 1 };
+  const mockSale3 = { product_id: 1, quantity: 1 };
+  const mockSale6 = [{ id: 1, date: '2019-01-01 02:54:54' }, { id: 2, date: '2019-01-01 02:54:54' }];
+  const mockSale7 = { id: 1, newSales: [{ id: 1, date: '2019-01-01 02:54:54' }, { id: 2, date: '2019-01-01 02:54:54' }] };
+
+  describe('1. Função getAll:', () => {
+    before(() => {
+      Sinon.stub(salesModel, 'getAll').resolves(mockSale);
+    });
+    after(() => {
+      salesModel.getAll.restore();
+    })
+    it('1.1 A função `getAll()`, retorna um array com objetos dentro?', async () => {
+      const result = await salesService.getAll();
+      expect(result).to.be.an('array');
+      result.map(sale => {
+        expect(sale).to.be.an('object');
+      })
+    });
+    it('1.2 As chaves dos objetos são: saleId, date, product_id, quantity?', async () => {
+      const result = await salesService.getAll();
+      result.map((item) => {
+        expect(item).to.include.all.keys('saleId', 'date', 'product_id', 'quantity');
+      });
+    });
+  });
+
+  describe('2. Função getById:', () => {
+    describe('2.1 Com parâmetro:', () => {
+      before(() => {
+        Sinon.stub(salesModel, 'getById').resolves(mockSale2);
+      });
+      after(() => {
+        salesModel.getById.restore();
+      })
+      it('2.1.1 O retorno é um array com objetos?', async () => {
+        const result = await salesService.getById(mockId.id);
+        expect(result).to.be.an('array');
+        result.map((sale) => {
+          expect(sale).to.be.an('object');
+        });
+      });
+      it('2.1.2 Os objetos contém as chaves: product_id, quantity, date?', async () => {
+        const result = await salesService.getById(mockId.id);
+        result.map((sale) => {
+          expect(sale).to.include.all.keys('product_id', 'quantity', 'date');
+        });
+      });
+    });
+    describe('4.2 Sem parâmetro passado:', () => {
+      before(() => {
+        Sinon.stub(salesModel, 'getById').resolves();
+      });
+      after(() => {
+        salesModel.getById.restore();
+      });
+      it('4.2.1 Retorna `undefined`?', async () => {
+        const result = await salesService.getById(mockId.id);
+        expect(result).to.be.undefined;
+      });
+    });
+  });
+
+  describe('3. Função create:', () => {
+    before(() => {
+      Sinon.stub(salesModel, 'create').resolves(mockId.id);
+    });
+    after(() => {
+      salesModel.create.restore();
+    })
+    it('3.1 Retorna um objeto com as chaves: id e itemsSold ?', async () => {
+      const result = await salesService.create(mockSale3);
+      expect(result).to.be.an('object');
+      expect(result).to.include.all.keys('id', 'itemsSold');
+    });
+    it('3.2 O tipo do valor id é number e de itemsSold é um objeto?', async () => {
+      const result = await salesService.create(mockSale3);
+      expect(result.id).to.be.an('Number');
+      expect(result.itemsSold).to.be.an('object');
+    });
+    it('3.3 As chaves do objeto itemsSold são: product_id, quantity ?', async () => {
+      const result = await salesService.create(mockSale3);
+      expect(result.itemsSold).to.include.all.keys('product_id', 'quantity');
+    });
+  });
+
+  describe('5. Função updateQuantity:', () => {
+    before(() => {
+      Sinon.stub(salesModel, 'updateQuantity').resolves();
+      Sinon.stub(salesModel, 'getByIdSale').resolves(mockSale6);
+    });
+    after(() => {
+      salesModel.updateQuantity.restore();
+      salesModel.getByIdSale.restore();
+    })
+    it('5.1 Retonar o objeto alterado e com as chaves: saleId e saleId?', async () => {
+      const result = await salesService.updateQuantity(mockSale7);
+      expect(result).to.include.all.keys('saleId', 'itemUpdated');
+    });
+    it('5.2 A chave saleId é tipo number, a chave itemUpdated é um array com objetos dentro?', async () => {
+      const result = await salesService.updateQuantity(mockSale7);
+      expect(result.saleId).to.be.an('Number');
+      result.itemUpdated.map((item) => {
+        expect(item).to.be.an('object');
+      });
+    });
+    it('5.3 No array itemUpdated que contém objetos, as chaves objetos dentro são: id e data?', async () => {
+      const result = await salesService.updateQuantity(mockSale7);
+      expect(result.saleId).to.be.an('Number');
+      result.itemUpdated.map((item) => {
+        expect(item).to.include.all.keys('id', 'date');
+      });
     });
   });
 });
