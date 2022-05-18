@@ -1,48 +1,12 @@
-### Termos e acordos
+# Repositório do projeto Store Manager!
 
-Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe
+Desenvolvido uma API utilizando a arquitetura MSC!
 
-# Boas vindas ao repositório do projeto Store Manager!
-
-Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Mantenha a atenção a cada passo, e se tiver qualquer dúvida, nos envie por Slack! #vqv 🚀
-Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir deste repositório, utilizando uma branch específica e um Pull Request para colocar seus códigos.
-
----
-
-# Sumário
-
-- [Habilidades](#habilidades)
-- [Entregáveis](#entregáveis)
-  - [O que deverá ser desenvolvido](#o-que-deverá-ser-desenvolvido)
-  - [Desenvolvimento](#desenvolvimento)
-  - [Data de entrega](#data-de-entrega)
-- [Instruções para entregar seu projeto](#instruções-para-entregar-seu-projeto)
-  - [Antes de começar a desenvolver](#antes-de-começar-a-desenvolver)
-  - [Durante o desenvolvimento](#durante-o-desenvolvimento)
-- [Como desenvolver](#como-desenvolver)
-  - [Padrões e conexões](#padrões-e-conexões)
-  - [Conexão com o Banco](#conexão-com-o-banco)
-  - [Tabelas](#tabelas)
-- [Requisitos do projeto](#requisitos-do-projeto)
-  - [Linter](#linter)
-  - [Lista de requisitos](#lista-de-requisitos)
-
-    `Obrigatórios`
-    - [1 - Crie um endpoint para o cadastro de produtos](#1---crie-um-endpoint-para-o-cadastro-de-produtos)
-    - [2 - Crie um endpoint para listar os produtos](#2---crie-um-endpoint-para-listar-os-produtos)
-    - [3 - Crie um endpoint para atualizar um produto](#3---crie-um-endpoint-para-atualizar-um-produto)
-    - [4 - Crie um endpoint para deletar um produto](#4---crie-um-endpoint-para-deletar-um-produto)
-    - [5 - Crie um endpoint para cadastrar vendas](#5---crie-um-endpoint-para-cadastrar-vendas)
-    - [6 - Crie um endpoint para listar as vendas](#6---crie-um-endpoint-para-listar-as-vendas)
-    - [7 - Crie um endpoint para atualizar uma venda](#7---crie-um-endpoint-para-atualizar-uma-venda)
-    - [8 - Escreva testes para cobrir 35% das camadas da sua aplicação](#8---escreva-testes-para-cobrir-35-das-camadas-da-sua-aplicação)
-    - [9 - Escreva testes para cobrir 40% das camadas da sua aplicação](#9---escreva-testes-para-cobrir-40-das-camadas-da-sua-aplicação)
+A API construída trata-se de um sistema de gerenciamento de vendas, onde é possível criar, visualizar, deletar e atualizar produtos e vendas.
 
 ---
 
 # Habilidades
-
-Nesse projeto, você será capaz de:
 
 - Entender o funcionamento da camada de Model;
 - Delegar responsabilidades específicas para essa camada;
@@ -55,102 +19,6 @@ Nesse projeto, você será capaz de:
 
 ---
 
-## O que deverá ser desenvolvido
-
-Você vai desenvolver sua primeira API utilizando a arquitetura MSC!
-
-A API a ser construída trata-se de um sistema de gerenciamento de vendas, onde será possível criar, visualizar, deletar e atualizar produtos e vendas.
-
----
-
-## Desenvolvimento
-
-Você vai desenvolver todas as camadas da API (Models, Services caso necessário, e Controllers).
-
-Através dessa aplicação, será possível realizar as operações básicas que se pode fazer em um determinado banco de dados: Criação, Leitura, Atualização e Exclusão (ou `CRUD`, para as pessoas mais mais íntimas 😜).
-
-Você deve utilizar o banco MySQL para a gestão de dados. Além disso, a API deve ser RESTful.
-
-⚠️ **Dicas Importantes** ⚠️:
-
-- Deve ser possível que a pessoa usuária, independente de cadastro ou login, possa adicionar, ler, deletar e atualizar produtos no seu estoque. A pessoa usuária deve poder também enviar vendas para o sistema e essas vendas devem validar se o produto em questão existe. Deve-se também, ser possível ler, deletar e atualizar vendas.
-
-- Para **todos os endpoints** garanta que:
-
-  - Caso o recurso **não seja encontrado**, **aconteça um erro erro**, ou **haja dados inválidos** na sua requisição, sua API retorne o status HTTP adequado com o body `{ message: <mensagem de erro> }`.
-  - Todos os retornos de erro devem seguir o mesmo formato.
-  - Para gerar os objetos de erro personalizados, você pode utilizar uma biblioteca de erros, como o [`boom`](https://www.npmjs.com/package/@hapi/boom).
-
-- Você pode utilizar middlewares e objetos de erro personalizados para que não tenha que repetir a lógica de tratamento de erro em vários lugares. Não se esqueça também do [express-rescue](https://www.npmjs.com/package/express-rescue), ele pode facilitar muito o trabalho de tratar erros.
-
-- Quando estiver na dúvida sobre qual status HTTP utilizar, você pode consultar sites como o [httpstatuses.com](https://httpstatuses.com/), [restapitutorial.com](https://www.restapitutorial.com/httpstatuscodes.html) ou a [documentação sobre o assunto no MDN](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status). Com o tempo, você vai lembrar com facilidade o significado dos códigos mais comuns.
-
-- Para realizar a validação dos dados, você pode utilizar pacotes como [`Joi`](https://www.npmjs.com/package/@hapi/joi) ou o [`Expresso Validator`](https://www.npmjs.com/package/@expresso/validator). Caso prefira, você também pode realizar a validação de forma manual.
-
----
-# Instruções para entregar seu projeto
-
-## Durante o desenvolvimento
-
-* ⚠ **PULL REQUESTS COM ISSUES NO LINTER NÃO SERÃO AVALIADAS, ATENTE-SE PARA RESOLVÊ-LAS ANTES DE FINALIZAR O DESENVOLVIMENTO!** ⚠
-
-* Faça `commits` das alterações que você fizer no código regularmente
-
-* Lembre-se de sempre após um (ou alguns) `commits` atualizar o repositório remoto
-
-* Os comandos que você utilizará com mais frequência são:
-  1. `git status` _(para verificar o que está em vermelho - fora do stage - e o que está em verde - no stage)_
-  2. `git add` _(para adicionar arquivos ao stage do Git)_
-  3. `git commit` _(para criar um commit com os arquivos que estão no stage do Git)_
-  5. `git push -u nome-da-branch` _(para enviar o commit para o repositório remoto na primeira vez que fizer o `push` de uma nova branch)_
-  4. `git push` _(para enviar o commit para o repositório remoto após o passo anterior)_
-
----
-
-# Como desenvolver
-
-## Padrões e conexões - ⚠️ Leia-os atentamente e siga à risca o que for pedido. ⚠️
-
-### Todos os seus endpoints devem estar no padrão REST
-
-- Use os verbos HTTP adequados para cada operação.
-
-- Agrupe e padronize suas URL em cada recurso.
-
-- Garanta que seus endpoints sempre retornem uma resposta, havendo sucesso nas operações ou não.
-
-- Retorne os códigos de status corretos (recurso criado, erro de validação, autorização, etc).
-
-### Cada camada da sua API deve estar em sua respectiva pasta
-
-- Models devem estar na pasta `models`, **na raiz do projeto**
-
-- Services devem estar na pasta `services`, **na raiz do projeto**
-
-- Controllers devem estar na pasta `controllers`, **na raiz do projeto**
-
-### Para escrever seus própios arquivos de teste
-
-- Utilize o **mocha**, **chai** e **sinon** para escrever seus testes
-
-- Coloque todos os testes de `models` no arquivo `test/unit/models.js`
-
-- Coloque todos os testes de `services` no arquivo `test/unit/services.js`
-
-- Coloque todos os testes de `controllers` no arquivo `test/unit/controllers.js`
-
-### Arquivo index.js
-
-Há um arquivo `index.js` no repositório. Não remova, nele, o seguinte trecho de código:
-
-```javascript
-app.get('/', (request, response) => {
-  response.send();
-});
-```
-
-Isso está configurado para o avaliador funcionar.
-
 ### Conexão com o Banco:
 
 **⚠️ IMPORTANTE! ⚠️**
@@ -162,7 +30,6 @@ const connection = mysql.createPool({
   password: process.env.MYSQL_PASSWORD,
 });
 ```
-Para os testes rodarem corretamente, na raiz do projeto **renomeie o arquivo `.env.example` para `.env`** com as variáveis de ambiente. Por exemplo, caso o seu usuário SQL seja `nome` e a senha `1234` seu arquivo ficará desta forma:
 
 ```sh
 MYSQL_HOST=localhost
@@ -171,55 +38,9 @@ MYSQL_PASSWORD=1234
 PORT=3000
 ```
 
-**Nota**: A variável **PORT** do arquivo `.env` deve ser utilizada para a conexão com o servidor. É importante utilizar essa variável para os testes serem executados corretamente tanto na máquina local quanto no avaliador.
+**Nota**: A variável **PORT** do arquivo `.env` deve ser utilizada para a conexão com o servidor.
 
-Com essas configurações, enquanto estiver na máquina local, o banco será executado normalmente via localhost (possibilitando os testes via `npm test`).
-Como o arquivo `.env` não será enviado para o GitHub (não se preocupe com isso, pois já está configurado no `.gitignore`), o avaliador utilizará as suas próprias variáveis de ambiente.
-
-### Tabelas
-
-Na raiz do projeto existe o arquivo `StoreManager.sql` que será usado para rodar os testes. Você pode importá-lo localmente para testar o comportamento da sua aplicação durante o desenvolvimento.
-
-O banco terá três tabelas: `products`, `sales` e `sales_products`.
-
-A tabela `products` tem o seguinte formato:
-
-![Tabela Produtos](./public/tableproducts.png)
-
-(O id será gerado automaticamente)
-
-A tabela `sales` tem o seguinte formato:
-
-![Tabela Vendas](./public/tablesales.png)
-
-(O id e date são gerados automaticamente)
-
-A tabela `sales_products`, é a tabela que faz o relacionamento `N:N` entre `products` e `sales` e tem o seguinte formato:
-
-![Tabela Vendas-Produtos](./public/tablesalesproducts.png)
-
-
-# Requisitos do projeto
-
-## Linter
-
-Usaremos o [ESLint](https://eslint.org/) para fazer a análise estática do seu código.
-
-Este projeto já vem com as dependências relacionadas ao _linter_ configuradas no arquivos `package.json`.
-
-Para poder rodar os `ESLint` em um projeto basta executar o comando `npm install` dentro do projeto e depois `npm run lint`. Se a análise do `ESLint` encontrar problemas no seu código, tais problemas serão mostrados no seu terminal. Se não houver problema no seu código, nada será impresso no seu terminal.
-
-Você pode também instalar o plugin do `ESLint` no `VSCode`, bastar ir em extensions e baixar o [plugin `ESLint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
-
----
-
-Na saída da execução dos testes, você verá um <img src="./public/orange-circle.png" width="15px"> indicando que o teste está sendo pulado:
-
-![image](./public/skipped-test.png)
-
-Uma estratégia é pular todos os testes no início e ir implementando um teste de cada vez, removendo dele a função `skip`.
-
-⚠️ Lembre-se de não entregar o projeto com nenhum teste ignorado. Testes ignorados serão tratados como testes falhando.
+# Objetivo do projeto
 
 ## Lista de requisitos
 
@@ -239,7 +60,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
 ```
 
 <details close>
-  <summary>O que será validado</summary>
+  <summary>Retorno esperado</summary>
   <br>
 
   > :point_right: Para o endpoint `POST /products`, o campo `name` deve ser uma _string_ com 5 ou mais caracteres e deve ser único.
@@ -247,7 +68,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
     ```json
       { "quantity": 100 }
     ```
-    - sua API deve responder com status http `400` e o seguinte `body`:
+    - a API deve responder com status http `400` e o seguinte `body`:
     ```json
       { "message": "\"name\" is required" }
     ```
@@ -256,7 +77,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
     ```json
       { "name": "pro", "quantity": 100 }
     ```
-    - sua API deve responder com status http `422` e o seguinte `body`:
+    - a API deve responder com status http `422` e o seguinte `body`:
     ```json
       { "message": "\"name\" length must be at least 5 characters long" }
     ```
@@ -264,7 +85,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
     ```json
       { "name": "produto", "quantity": 100 }
     ```
-    - sua API deve responder com status http `409` e o seguinte `body`:
+    - a API deve responder com status http `409` e o seguinte `body`:
     ```json
       { "message": "Product already exists" }
     ```
@@ -274,7 +95,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
     ```json
       { "name": "produto" }
     ```
-    - sua API deve responder com status http `400` e o seguinte `body`:
+    - a API deve responder com status http `400` e o seguinte `body`:
       ```json
         { "message": "\"quantity\" is required" }
       ```
@@ -289,7 +110,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
     ```json
       { "name": "produto", "quantity": 0 }
     ```
-    - sua API deve responder com status http `422` e o seguinte `body`:
+    - a API deve responder com status http `422` e o seguinte `body`:
     ```json
       { "message": "\"quantity\" must be a number larger than or equal to 1" }
     ```
@@ -299,7 +120,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
     ```json
       { "name": "produto", "quantity": 10 }
     ```
-    - sua API deve responder com status http `201` e o seguinte `body`:
+    - a API deve responder com status http `201` e o seguinte `body`:
     ```json
       { "id": 1, "name": "produto", "quantity": 10 }
     ```
@@ -316,11 +137,11 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
 - Através do caminho `/products/:id`, apenas o produto com o `id` presente na URL deve ser retornado;
 
 <details close>
-  <summary>O que será validado</summary>
+  <summary>Retorno esperado</summary>
   <br>
 
   > :point_right: Para o endpoint `GET /products`, será validado que todos produtos estão sendo retornados.
-  - sua API deve responder com status http `200` e o seguinte `body`:
+  - a API deve responder com status http `200` e o seguinte `body`:
   ```json
     [
       {
@@ -337,7 +158,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
   ```
 
   > :point_right: Para o endpoint `GET /products/:id`, será validado que é possível listar um determinado produto.
-  - sua API deve responder com status http `200` e o seguinte `body`:
+  - a API deve responder com status http `200` e o seguinte `body`:
     ```json
       {
         "id": 1,
@@ -347,7 +168,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
     ```
 
   > :point_right: Para o endpoint `GET /products/:id`, será validado que não é possível listar um produto que não existe.
-  - sua API deve responder com status http `404` e o seguinte `body`:
+  - a API deve responder com status http `404` e o seguinte `body`:
     ```json
       { "message": "Product not found" }
     ```
@@ -373,7 +194,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
 ```
 
 <details close>
-  <summary>O que será validado</summary>
+  <summary>Retorno esperado</summary>
   <br>
 
   > :point_right: Para o endpoint `PUT /products/:id`, o campo `name` deve ser uma _string_ com 5 ou mais caracteres e deve ser único.
@@ -381,7 +202,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
     ```json
       { "name": "pro", "quantity": 15 }
     ```
-    - sua API deve responder com status http `422` e o seguinte `body`:
+    - a API deve responder com status http `422` e o seguinte `body`:
     ```json
       { "message": "\"name\" length must be at least 5 characters long" }
     ```
@@ -397,7 +218,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
     ```json
       { "name": "produto", "quantity": 0 }
     ```
-    - sua API deve responder com status http `422` e o seguinte `body`:
+    - a API deve responder com status http `422` e o seguinte `body`:
     ```json
       { "message": "\"quantity\" must be a number larger than or equal to 1" }
     ```
@@ -407,13 +228,13 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
     ```json
       { "name": "produto", "quantity": 15 }
     ```
-    - sua API deve responder com status http `200` e o seguinte `body`:
+    - a API deve responder com status http `200` e o seguinte `body`:
     ```json
       { "id": 1, "name": "produto", "quantity": 15 }
     ```
 
   > :point_right: Para o endpoint `PUT /products/:id`, será validado que não é possível alterar um produto que não existe.
-  - sua API deve responder com status http `404` e o seguinte `body`:
+  - a API deve responder com status http `404` e o seguinte `body`:
     ```json
       { "message": "Product not found" }
     ```
@@ -428,7 +249,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
 - Apenas o produto com o `id` presente na URL deve ser deletado;
 
 <details close>
-  <summary>O que será validado</summary>
+  <summary>Retorno esperado</summary>
   <br>
 
   > :point_right: Para o endpoint `DELETE /products/:id`, será validado que é possível deletar um produto com sucesso.
@@ -442,7 +263,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
   ```
 
   > :point_right: Para o endpoint `DELETE /products/:id`, será validado que não é possível deletar um produto que não existe.
-  - sua API deve responder com status http `404` e o seguinte `body`:
+  - a API deve responder com status http `404` e o seguinte `body`:
     ```json
       { "message": "Product not found" }
     ```
@@ -470,7 +291,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
 ```
 
 <details close>
-  <summary>O que será validado</summary>
+  <summary>Retorno esperado</summary>
   <br>
 
   > :point_right: Para o endpoint `POST /sales`, o campo `product_id` deve ser um _id_ de um produto anteriormente cadastrado.
@@ -482,7 +303,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
         }
       ]
     ```
-    - sua API deve responder com status http `400` e o seguinte `body`:
+    - a API deve responder com status http `400` e o seguinte `body`:
     ```json
       { "message": "\"product_id\" is required" }
     ```
@@ -496,7 +317,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
         }
       ]
     ```
-    - sua API deve responder com status http `400` e o seguinte `body`:
+    - a API deve responder com status http `400` e o seguinte `body`:
       ```json
         { "message": "\"quantity\" is required" }
       ```
@@ -526,7 +347,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
         }
       ]
     ```
-    - sua API deve responder com status http `422` e o seguinte `body`:
+    - a API deve responder com status http `422` e o seguinte `body`:
     ```json
       { "message": "\"quantity\" must be a number larger than or equal to 1" }
     ```
@@ -541,7 +362,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
         }
       ]
     ```
-    - sua API deve responder com status http `201` e o seguinte `body`:
+    - a API deve responder com status http `201` e o seguinte `body`:
     ```json
       {
         "id": 1,
@@ -568,7 +389,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
         }
       ]
     ```
-    - sua API deve responder com status http `201` e o seguinte `body`:
+    - a API deve responder com status http `201` e o seguinte `body`:
     ```json
       {
         "id": 1,
@@ -597,11 +418,11 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
 - Através do caminho `/sales/:id`, apenas a venda com o `id` presente na URL deve ser retornada;
 
 <details close>
-  <summary>O que será validado</summary>
+  <summary>Retorno esperado</summary>
   <br>
 
   > :point_right: Para o endpoint `GET /sales`, será validado que todas vendas estão sendo retornados.
-  - sua API deve responder com status http `200` e o seguinte `body`:
+  - a API deve responder com status http `200` e o seguinte `body`:
   ```json
     [
       {
@@ -620,7 +441,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
   ```
 
   > :point_right: Para o endpoint `GET /sales/:id`, será validado que é possível listar uma determinada venda.
-  - sua API deve responder com status http `200` e o seguinte `body`:
+  - a API deve responder com status http `200` e o seguinte `body`:
     ```json
       [
         {
@@ -637,7 +458,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
     ```
 
   > :point_right: Para o endpoint `GET /sales/:id`, será validado que não é possível listar uma venda que não existe.
-  - sua API deve responder com status http `404` e o seguinte `body`:
+  - a API deve responder com status http `404` e o seguinte `body`:
     ```json
       { "message": "Sale not found" }
     ```
@@ -665,7 +486,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
 ```
 
 <details close>
-  <summary>O que será validado</summary>
+  <summary>Retorno esperado</summary>
   <br>
 
   > :point_right: Para o endpoint `PUT /sales/:id`, o campo `product_id` deve ser um _id_ de um produto anteriormente cadastrado.
@@ -677,7 +498,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
         }
       ]
     ```
-    - sua API deve responder com status http `400` e o seguinte `body`:
+    - a API deve responder com status http `400` e o seguinte `body`:
     ```json
       { "message": "\"product_id\" is required" }
     ```
@@ -691,7 +512,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
         }
       ]
     ```
-    - sua API deve responder com status http `400` e o seguinte `body`:
+    - a API deve responder com status http `400` e o seguinte `body`:
     ```json
       { "message": "\"quantity\" is required" }
     ```
@@ -721,7 +542,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
         }
       ]
     ```
-    - sua API deve responder com status http `422` e o seguinte `body`:
+    - a API deve responder com status http `422` e o seguinte `body`:
     ```json
       { "message": "\"quantity\" must be a number larger than or equal to 1" }
     ```
@@ -736,7 +557,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
         }
       ]
     ```
-    - sua API deve responder com status http `200` e o seguinte `body`:
+    - a API deve responder com status http `200` e o seguinte `body`:
     ```json
       {
         "saleId": 1,
@@ -754,14 +575,14 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
 
 ### 8 - Escreva testes para cobrir 35% das camadas da sua aplicação
 
-- Seus arquivos de teste devem ficar no diretório `test/unit`, **como citado [aqui](#para-escrever-seus-própios-arquivos-de-teste)**;
+- Os arquivos de teste devem ficar no diretório `test/unit`, **como citado [aqui](#para-escrever-seus-própios-arquivos-de-teste)**;
 
-- Seus testes da `model` devem fazer mock do banco de dados obrigatóriamente;
+- Os testes da `model` devem fazer mock do banco de dados obrigatóriamente;
 
 - Opcionalmente você pode parar o serviço do `MYSQL` em sua máquina. Para rodar seus teste utilize `npm run test:mocha`;
 
 <details close>
-  <summary>O que será validado</summary>
+  <summary>Retorno esperado</summary>
   <br>
 
   > :point_right: Será validado que a cobertura total das linhas dos arquivos nas pastas `models`, `services` e `controllers` é maior ou igual a 35%.
@@ -774,14 +595,14 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
 
 ### 9 - Escreva testes para cobrir 40% das camadas da sua aplicação
 
-- Seus arquivos de teste devem ficar no diretório `test/unit`, **como citado [aqui](#para-escrever-seus-própios-arquivos-de-teste)**
+- Os arquivos de teste devem ficar no diretório `test/unit`, **como citado [aqui](#para-escrever-seus-própios-arquivos-de-teste)**
 
-- Seus testes da `model` devem fazer mock do banco de dados obrigatóriamente;
+- Os testes da `model` devem fazer mock do banco de dados obrigatóriamente;
 
 - Opcionalmente você pode parar o serviço do `MYSQL` em sua máquina. Para rodar seus teste utilize `npm run test:mocha`;
 
 <details close>
-  <summary>O que será validado</summary>
+  <summary>Retorno esperado</summary>
   <br>
 
   > :point_right: Será validado que a cobertura total das linhas dos arquivos nas pastas `models`, `services` e `controllers` é maior ou igual a 40%.
